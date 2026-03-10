@@ -1,0 +1,726 @@
+      body {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          min-height: 100vh;
+          padding: 20px;
+      }
+
+      .container {
+          max-width: 800px;
+          margin: 0 auto;
+          background: white;
+          border-radius: 20px;
+          padding: 30px;
+          box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+      }
+
+      .header {
+          text-align: center;
+          margin-bottom: 30px;
+      }
+
+      .header h1 {
+          color: #333;
+          font-size: 28px;
+          margin-bottom: 10px;
+      }
+
+      .timer-section {
+          background: #f8f9fa;
+          border-radius: 15px;
+          padding: 30px;
+          margin-bottom: 30px;
+          text-align: center;
+      }
+
+      .timer-display {
+          font-size: 48px;
+          font-weight: bold;
+          color: #333;
+          margin-bottom: 20px;
+          font-family: 'Courier New', monospace;
+      }
+
+      .controls {
+          display: flex;
+          gap: 15px;
+          justify-content: center;
+          flex-wrap: wrap;
+          margin-bottom: 20px;
+      }
+
+      .btn {
+          padding: 12px 24px;
+          border: none;
+          border-radius: 8px;
+          font-size: 16px;
+          cursor: pointer;
+          transition: all 0.3s;
+          color: white;
+          font-weight: 500;
+      }
+
+      .btn-primary {
+          background: #667eea;
+      }
+
+      .btn-primary:hover {
+          background: #5a6fd8;
+      }
+
+      .btn-success {
+          background: #48bb78;
+      }
+
+      .btn-success:hover {
+          background: #3da066;
+      }
+
+      .btn-danger {
+          background: #f56565;
+      }
+
+      .btn-danger:hover {
+          background: #e53e3e;
+      }
+
+      .btn-secondary {
+          background: #718096;
+      }
+
+      .btn-secondary:hover {
+          background: #5a6495;
+      }
+
+      .form-section {
+          margin-bottom: 30px;
+      }
+
+      .form-group {
+          margin-bottom: 20px;
+      }
+
+      .form-group label {
+          display: block;
+          margin-bottom: 8px;
+          color: #555;
+          font-weight: 500;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+          width: 100%;
+          padding: 12px;
+          border: 2px solid #e2e8f0;
+          border-radius: 8px;
+          font-size: 16px;
+          transition: border-color 0.3s;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+          outline: none;
+          border-color: #667eea;
+      }
+
+      .rating-section {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 20px;
+          margin-bottom: 20px;
+      }
+
+      .rating-group {
+          text-align: center;
+      }
+
+      .rating-label {
+          font-weight: 500;
+          color: #555;
+          margin-bottom: 10px;
+      }
+
+      .rating-input {
+          display: flex;
+          justify-content: center;
+          gap: 5px;
+          margin-bottom: 10px;
+      }
+
+      .rating-btn {
+          width: 40px;
+          height: 40px;
+          border: 2px solid #e2e8f0;
+          background: white;
+          border-radius: 8px;
+          cursor: pointer;
+          font-size: 16px;
+          transition: all 0.3s;
+      }
+
+      .rating-btn:hover,
+      .rating-btn.active {
+          background: #667eea;
+          color: white;
+          border-color: #667eea;
+      }
+
+      .history-section {
+          border-top: 2px solid #e2e8f0;
+          padding-top: 30px;
+      }
+
+      .history-item {
+          background: #f8f9fa;
+          border-radius: 10px;
+          padding: 15px;
+          margin-bottom: 15px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 10px;
+      }
+
+      .history-info {
+          flex: 1;
+          min-width: 200px;
+      }
+
+      .history-title {
+          font-weight: 600;
+          color: #333;
+          margin-bottom: 5px;
+      }
+
+      .history-meta {
+          font-size: 14px;
+          color: #718096;
+      }
+
+      .history-rating {
+          display: flex;
+          gap: 15px;
+      }
+
+      .rating-badge {
+          padding: 4px 8px;
+          border-radius: 15px;
+          font-size: 12px;
+          font-weight: 500;
+          background: #e2e8f0;
+          color: #555;
+      }
+
+      .stats-section {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: 15px;
+          margin-bottom: 30px;
+      }
+
+      .stat-card {
+          background: #667eea;
+          color: white;
+          padding: 20px;
+          border-radius: 10px;
+          text-align: center;
+      }
+
+      .stat-value {
+          font-size: 32px;
+          font-weight: bold;
+          margin-bottom: 5px;
+      }
+
+      .stat-label {
+          font-size: 14px;
+          opacity: 0.9;
+      }
+
+      .hidden {
+          display: none;
+      }
+
+      @media (max-width: 600px) {
+          body {
+              padding: 10px;
+          }
+
+          .container {
+              padding: 20px;
+          }
+
+          .timer-display {
+              font-size: 36px;
+          }
+
+          .controls {
+              flex-direction: column;
+          }
+
+          .btn {
+              width: 100%;
+          }
+
+          .rating-section {
+              grid-template-columns: 1fr;
+          }
+
+          .history-item {
+              flex-direction: column;
+              align-items: flex-start;
+          }
+      }
+  </style>
+      <!-- 统计概览 -->
+      <div class="stats-section" id="statsSection">
+          <div class="stat-card">
+              <div class="stat-value" id="todayTime">0h</div>
+              <div class="stat-label">今日用时</div>
+          </div>
+          <div class="stat-card">
+              <div class="stat-value" id="todayCount">0</div>
+              <div class="stat-label">今日记录</div>
+          </div>
+          <div class="stat-card">
+              <div class="stat-value" id="avgHappy">0</div>
+              <div class="stat-label">平均快乐值</div>
+          </div>
+          <div class="stat-card">
+              <div class="stat-value" id="avgMeaning">0</div>
+              <div class="stat-label">平均意义值</div>
+          </div>
+      </div>
+
+      <!-- 计时器区域 -->
+      <div class="timer-section">
+          <div class="timer-display" id="timerDisplay">00:00:00</div>
+          <div class="controls">
+              <button class="btn btn-primary" id="startBtn" onclick="startTimer()">开始计时</button>
+              <button class="btn btn-secondary hidden" id="pauseBtn" onclick="pauseTimer()">暂停</button>
+              <button class="btn btn-danger hidden" id="stopBtn" onclick="stopTimer()">停止</button>
+              <button class="btn btn-success" onclick="showManualForm()">手动输入</button>
+          </div>
+          <div id="currentActivity" class="hidden">
+              <p style="color: #667eea; font-weight: 500;">正在记录: <span id="activityName"></span></p>
+          </div>
+      </div>
+
+      <!-- 快速记录表单 -->
+      <div class="form-section">
+          <h3 style="margin-bottom: 20px; color: #333;">快速记录</h3>
+          <div class="form-group">
+              <label for="activityInput">事项描述</label>
+              <input type="text" id="activityInput" placeholder="例如：写代码、看书、运动...">
+          </div>
+          <div class="form-group">
+              <label for="categorySelect">分类标签</label>
+              <select id="categorySelect">
+                  <option value="工作">工作</option>
+                  <option value="学习">学习</option>
+                  <option value="娱乐">娱乐</option>
+                  <option value="情感">情感</option>
+                  <option value="创作">创作</option>
+                  <option value="休息">休息</option>
+                  <option value="其他">其他</option>
+              </select>
+          </div>
+          <div class="rating-section">
+              <div class="rating-group">
+                  <div class="rating-label">😊 快乐值 (1-10分)</div>
+                  <div class="rating-input" id="happyRating">
+                      <button class="rating-btn" data-value="1">1</button>
+                      <button class="rating-btn" data-value="2">2</button>
+                      <button class="rating-btn" data-value="3">3</button>
+                      <button class="rating-btn" data-value="4">4</button>
+                      <button class="rating-btn" data-value="5">5</button>
+                      <button class="rating-btn" data-value="6">6</button>
+                      <button class="rating-btn" data-value="7">7</button>
+                      <button class="rating-btn" data-value="8">8</button>
+                      <button class="rating-btn" data-value="9">9</button>
+                      <button class="rating-btn" data-value="10">10</button>
+                  </div>
+              </div>
+              <div class="rating-group">
+                  <div class="rating-label">⭐ 意义值 (1-10分)</div>
+                  <div class="rating-input" id="meaningRating">
+                      <button class="rating-btn" data-value="1">1</button>
+                      <button class="rating-btn" data-value="2">2</button>
+                      <button class="rating-btn" data-value="3">3</button>
+                      <button class="rating-btn" data-value="4">4</button>
+                      <button class="rating-btn" data-value="5">5</button>
+                      <button class="rating-btn" data-value="6">6</button>
+                      <button class="rating-btn" data-value="7">7</button>
+                      <button class="rating-btn" data-value="8">8</button>
+                      <button class="rating-btn" data-value="9">9</button>
+                      <button class="rating-btn" data-value="10">10</button>
+                  </div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="noteInput">备注 (可选)</label>
+              <textarea id="noteInput" rows="2" placeholder="添加一些备注信息..."></textarea>
+          </div>
+      </div>
+
+      <!-- 历史记录 -->
+      <div class="history-section">
+          <h3 style="margin-bottom: 20px; color: #333;">📊 历史记录</h3>
+          <div id="historyList"></div>
+      </div>
+  </div>
+
+  <!-- 手动输入模态框 -->
+  <div id="manualModal" class="hidden" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background:
+  rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000;">
+      <div style="background: white; padding: 30px; border-radius: 15px; max-width: 500px; width: 90%;">
+          <h3 style="margin-bottom: 20px;">手动输入时间</h3>
+          <div class="form-group">
+              <label>开始时间</label>
+              <input type="datetime-local" id="manualStart">
+          </div>
+          <div class="form-group">
+              <label>结束时间</label>
+              <input type="datetime-local" id="manualEnd">
+          </div>
+          <div class="form-group">
+              <label>事项描述</label>
+              <input type="text" id="manualActivity" placeholder="输入事项描述">
+          </div>
+          <div class="form-group">
+              <label>分类标签</label>
+              <select id="manualCategory">
+                  <option value="工作">工作</option>
+                  <option value="学习">学习</option>
+                  <option value="娱乐">娱乐</option>
+                  <option value="情感">情感</option>
+                  <option value="创作">创作</option>
+                  <option value="休息">休息</option>
+                  <option value="其他">其他</option>
+              </select>
+          </div>
+          <div style="display: flex; gap: 10px; justify-content: flex-end;">
+              <button class="btn btn-secondary" onclick="closeManualForm()">取消</button>
+              <button class="btn btn-primary" onclick="saveManualRecord()">保存</button>
+          </div>
+      </div>
+  </div>
+
+  <script>
+      // 全局变量
+      let isRunning = false;
+      let startTime = null;
+      let timerInterval = null;
+      let currentActivity = null;
+      let happyRating = 0;
+      let meaningRating = 0;
+      let records = [];
+
+      // 初始化
+      document.addEventListener('DOMContentLoaded', function() {
+          loadRecords();
+          updateStats();
+          updateHistory();
+          setupRatingButtons();
+
+          // 设置手动输入的默认时间
+          const now = new Date();
+          const today = now.toISOString().slice(0, 10);
+          const startTime = new Date(now.getTime() - 60 * 60 * 1000); // 1小时前
+          const endTime = now;
+
+          document.getElementById('manualStart').value = startTime.toISOString().slice(0, 16);
+          document.getElementById('manualEnd').value = endTime.toISOString().slice(0, 16);
+      });
+
+      // 评分按钮设置
+      function setupRatingButtons() {
+          const happyButtons = document.querySelectorAll('#happyRating .rating-btn');
+          const meaningButtons = document.querySelectorAll('#meaningRating .rating-btn');
+
+          happyButtons.forEach(btn => {
+              btn.addEventListener('click', function() {
+                  happyRating = parseInt(this.dataset.value);
+                  updateRatingButtons(happyButtons, happyRating);
+              });
+          });
+
+          meaningButtons.forEach(btn => {
+              btn.addEventListener('click', function() {
+                  meaningRating = parseInt(this.dataset.value);
+                  updateRatingButtons(meaningButtons, meaningRating);
+              });
+          });
+      }
+
+      function updateRatingButtons(buttons, rating) {
+          buttons.forEach((btn, index) => {
+              if (index < rating) {
+                  btn.classList.add('active');
+              } else {
+                  btn.classList.remove('active');
+              }
+          });
+      }
+
+      // 计时器功能
+      function startTimer() {
+          const activity = document.getElementById('activityInput').value.trim();
+          if (!activity) {
+              alert('请输入事项描述！');
+              return;
+          }
+
+          isRunning = true;
+          startTime = new Date();
+          currentActivity = {
+              name: activity,
+              category: document.getElementById('categorySelect').value,
+              note: document.getElementById('noteInput').value,
+              happy: happyRating,
+              meaning: meaningRating
+          };
+
+          document.getElementById('startBtn').classList.add('hidden');
+          document.getElementById('pauseBtn').classList.remove('hidden');
+          document.getElementById('stopBtn').classList.remove('hidden');
+          document.getElementById('currentActivity').classList.remove('hidden');
+          document.getElementById('activityName').textContent = activity;
+
+          timerInterval = setInterval(updateTimer, 1000);
+      }
+
+      function pauseTimer() {
+          if (isRunning) {
+              clearInterval(timerInterval);
+              isRunning = false;
+              document.getElementById('pauseBtn').textContent = '继续';
+          } else {
+              isRunning = true;
+              timerInterval = setInterval(updateTimer, 1000);
+              document.getElementById('pauseBtn').textContent = '暂停';
+          }
+      }
+
+      function stopTimer() {
+          clearInterval(timerInterval);
+          isRunning = false;
+          const endTime = new Date();
+
+          const record = {
+              id: Date.now(),
+              activity: currentActivity.name,
+              category: currentActivity.category,
+              note: currentActivity.note,
+              happy: currentActivity.happy,
+              meaning: currentActivity.meaning,
+              startTime: startTime.toISOString(),
+              endTime: endTime.toISOString(),
+              duration: endTime - startTime,
+              date: new Date().toDateString()
+          };
+
+          saveRecord(record);
+
+          // 重置状态
+          document.getElementById('startBtn').classList.remove('hidden');
+          document.getElementById('pauseBtn').classList.add('hidden');
+          document.getElementById('stopBtn').classList.add('hidden');
+          document.getElementById('currentActivity').classList.add('hidden');
+          document.getElementById('timerDisplay').textContent = '00:00:00';
+
+          // 清空表单
+          document.getElementById('activityInput').value = '';
+          document.getElementById('noteInput').value = '';
+          happyRating = 0;
+          meaningRating = 0;
+          updateRatingButtons(document.querySelectorAll('#happyRating .rating-btn'), 0);
+          updateRatingButtons(document.querySelectorAll('#meaningRating .rating-btn'), 0);
+
+          currentActivity = null;
+          startTime = null;
+      }
+
+      function updateTimer() {
+          if (!isRunning || !startTime) return;
+
+          const now = new Date();
+          const duration = now - startTime;
+
+          const hours = Math.floor(duration / (1000 * 60 * 60));
+          const minutes = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((duration % (1000 * 60)) / 1000);
+
+          document.getElementById('timerDisplay').textContent =
+              `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2,
+  '0')}:${seconds.toString().padStart(2, '0')}`;
+      }
+
+      // 手动输入功能
+      function showManualForm() {
+          document.getElementById('manualModal').classList.remove('hidden');
+      }
+
+      function closeManualForm() {
+          document.getElementById('manualModal').classList.add('hidden');
+      }
+
+      function saveManualRecord() {
+          const start = document.getElementById('manualStart').value;
+          const end = document.getElementById('manualEnd').value;
+          const activity = document.getElementById('manualActivity').value.trim();
+
+          if (!start || !end || !activity) {
+              alert('请填写完整信息！');
+              return;
+          }
+
+          const startDate = new Date(start);
+          const endDate = new Date(end);
+
+          if (endDate <= startDate) {
+              alert('结束时间必须晚于开始时间！');
+              return;
+          }
+
+          const record = {
+              id: Date.now(),
+              activity: activity,
+              category: document.getElementById('manualCategory').value,
+              note: '',
+              happy: 0,
+              meaning: 0,
+              startTime: startDate.toISOString(),
+              endTime: endDate.toISOString(),
+              duration: endDate - startDate,
+              date: startDate.toDateString()
+          };
+
+          saveRecord(record);
+          closeManualForm();
+
+          // 清空表单
+          document.getElementById('manualActivity').value = '';
+      }
+
+      // 数据管理
+      function saveRecord(record) {
+          records = JSON.parse(localStorage.getItem('timeRecords') || '[]');
+          records.push(record);
+          localStorage.setItem('timeRecords', JSON.stringify(records));
+          updateStats();
+          updateHistory();
+      }
+
+      function loadRecords() {
+          records = JSON.parse(localStorage.getItem('timeRecords') || '[]');
+      }
+
+      function deleteRecord(id) {
+          if (confirm('确定要删除这条记录吗？')) {
+              records = records.filter(r => r.id !== id);
+              localStorage.setItem('timeRecords', JSON.stringify(records));
+              updateStats();
+              updateHistory();
+          }
+      }
+
+      // 统计功能
+      function updateStats() {
+          const today = new Date().toDateString();
+          const todayRecords = records.filter(r => r.date === today);
+
+          const totalTime = todayRecords.reduce((sum, r) => sum + r.duration, 0);
+          const totalHappy = todayRecords.reduce((sum, r) => sum + r.happy, 0);
+          const totalMeaning = todayRecords.reduce((sum, r) => sum + r.meaning, 0);
+
+          document.getElementById('todayTime').textContent = formatDuration(totalTime);
+          document.getElementById('todayCount').textContent = todayRecords.length;
+          document.getElementById('avgHappy').textContent = todayRecords.length > 0 ? (totalHappy /
+  todayRecords.length).toFixed(1) : 0;
+          document.getElementById('avgMeaning').textContent = todayRecords.length > 0 ? (totalMeaning /
+  todayRecords.length).toFixed(1) : 0;
+      }
+
+      function formatDuration(ms) {
+          const hours = Math.floor(ms / (1000 * 60 * 60));
+          const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
+
+          if (hours > 0) {
+              return `${hours}h ${minutes}m`;
+          } else {
+              return `${minutes}m`;
+          }
+      }
+
+      // 历史记录显示
+      function updateHistory() {
+          const historyList = document.getElementById('historyList');
+          const today = new Date().toDateString();
+          const todayRecords = records.filter(r => r.date === today).sort((a, b) => b.id - a.id);
+
+          if (todayRecords.length === 0) {
+              historyList.innerHTML = '<p style="text-align: center; color: #718096;">暂无今日记录</p>';
+              return;
+          }
+
+          historyList.innerHTML = todayRecords.map(record => {
+              const startTime = new Date(record.startTime);
+              const endTime = new Date(record.endTime);
+              const duration = formatDuration(record.duration);
+
+              return `
+                  <div class="history-item">
+                      <div class="history-info">
+                          <div class="history-title">${record.activity}</div>
+                          <div class="history-meta">
+                              ${record.category} | ${startTime.toLocaleTimeString()} - ${endTime.toLocaleTimeString()} |
+   ${duration}
+                          </div>
+                      </div>
+                      <div class="history-rating">
+                          ${record.happy > 0 ? `<span class="rating-badge">😊 ${record.happy}分</span>` : ''}
+                          ${record.meaning > 0 ? `<span class="rating-badge">⭐ ${record.meaning}分</span>` : ''}
+                          <button class="btn btn-danger" style="padding: 4px 8px; font-size: 12px;"
+  onclick="deleteRecord(${record.id})">删除</button>
+                      </div>
+                  </div>
+              `;
+          }).join('');
+      }
+
+      // 键盘快捷键
+      document.addEventListener('keydown', function(e) {
+          if (e.ctrlKey || e.metaKey) {
+              if (e.key === 's') {
+                  e.preventDefault();
+                  if (!isRunning) {
+                      startTimer();
+                  }
+              } else if (e.key === ' ') {
+                  e.preventDefault();
+                  if (isRunning) {
+                      pauseTimer();
+                  }
+              } else if (e.key === 'q') {
+                  e.preventDefault();
+                  if (isRunning) {
+                      stopTimer();
+                  }
+              }
+          }
+      });
+
+      // 响应式处理
+      window.addEventListener('resize', function() {
+          // 确保移动端输入框不会缩放
+          if (window.innerWidth < 600) {
+              document.querySelectorAll('input, select, textarea').forEach(el => {
+                  el.style.fontSize = '16px';
+              });
+          }
+      });
+  </script>
