@@ -10,6 +10,7 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
+            margin:0;
         }
 
         .container {
@@ -123,6 +124,7 @@
             border-radius: 8px;
             font-size: 16px;
             transition: border-color 0.3s;
+            box-sizing:border-box;
         }
 
         .form-group input:focus,
@@ -154,6 +156,7 @@
             justify-content: center;
             gap: 5px;
             margin-bottom: 10px;
+            flex-wrap:wrap;
         }
 
         .rating-btn {
@@ -210,6 +213,7 @@
         .history-rating {
             display: flex;
             gap: 15px;
+            align-items:center;
         }
 
         .rating-badge {
@@ -248,7 +252,7 @@
         }
 
         .hidden {
-            display: none;
+            display: none !important;
         }
 
         @media (max-width: 600px) {
@@ -274,6 +278,13 @@
 
             .rating-section {
                 grid-template-columns: 1fr;
+                gap:15px;
+            }
+
+            .rating-btn {
+                width:30px;
+                height:30px;
+                font-size:14px;
             }
 
             .history-item {
@@ -281,143 +292,149 @@
                 align-items: flex-start;
             }
         }
+
+        #manualModal > div {
+            max-height: 90vh;
+            overflow-y: auto;
+            box-sizing:border-box;
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="header">
-            <h1>⏱️ 时间管理与专注记录</h1>
-            <p>记录每一段时光，感受生活的意义与快乐</p>
-        </div>
+<div class="container">
+    <div class="header">
+        <h1>⏱️ 时间管理与专注记录</h1>
+        <p>记录每一段时光，感受生活的意义与快乐</p>
+    </div>
 
-        <div class="stats-section" id="statsSection">
-            <div class="stat-card">
-                <div class="stat-value" id="todayTime">0h</div>
-                <div class="stat-label">今日用时</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" id="todayCount">0</div>
-                <div class="stat-label">今日记录</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" id="avgHappy">0</div>
-                <div class="stat-label">平均快乐值</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" id="avgMeaning">0</div>
-                <div class="stat-label">平均意义值</div>
-            </div>
+    <div class="stats-section" id="statsSection">
+        <div class="stat-card">
+            <div class="stat-value" id="todayTime">0h</div>
+            <div class="stat-label">今日用时</div>
         </div>
-
-        <div class="timer-section">
-            <div class="timer-display" id="timerDisplay">00:00:00</div>
-            <div class="controls">
-                <button class="btn btn-primary" id="startBtn" onclick="startTimer()">开始计时</button>
-                <button class="btn btn-secondary hidden" id="pauseBtn" onclick="pauseTimer()">暂停</button>
-                <button class="btn btn-danger hidden" id="stopBtn" onclick="stopTimer()">停止</button>
-                <button class="btn btn-success" onclick="showManualForm()">手动输入</button>
-            </div>
-            <div id="currentActivity" class="hidden">
-                <p style="color: #667eea; font-weight: 500;">正在记录: <span id="activityName"></span></p>
-            </div>
+        <div class="stat-card">
+            <div class="stat-value" id="todayCount">0</div>
+            <div class="stat-label">今日记录</div>
         </div>
-
-        <div class="form-section">
-            <h3 style="margin-bottom: 20px; color: #333;">快速记录</h3>
-            <div class="form-group">
-                <label for="activityInput">事项描述</label>
-                <input type="text" id="activityInput" placeholder="例如：写代码、看书、运动...">
-            </div>
-            <div class="form-group">
-                <label for="categorySelect">分类标签</label>
-                <select id="categorySelect">
-                    <option value="工作">工作</option>
-                    <option value="学习">学习</option>
-                    <option value="娱乐">娱乐</option>
-                    <option value="情感">情感</option>
-                    <option value="创作">创作</option>
-                    <option value="休息">休息</option>
-                    <option value="其他">其他</option>
-                </select>
-            </div>
-            <div class="rating-section">
-                <div class="rating-group">
-                    <div class="rating-label">😊 快乐值 (1-10分)</div>
-                    <div class="rating-input" id="happyRating">
-                        <button class="rating-btn" data-value="1">1</button>
-                        <button class="rating-btn" data-value="2">2</button>
-                        <button class="rating-btn" data-value="3">3</button>
-                        <button class="rating-btn" data-value="4">4</button>
-                        <button class="rating-btn" data-value="5">5</button>
-                        <button class="rating-btn" data-value="6">6</button>
-                        <button class="rating-btn" data-value="7">7</button>
-                        <button class="rating-btn" data-value="8">8</button>
-                        <button class="rating-btn" data-value="9">9</button>
-                        <button class="rating-btn" data-value="10">10</button>
-                    </div>
-                </div>
-                <div class="rating-group">
-                    <div class="rating-label">⭐ 意义值 (1-10分)</div>
-                    <div class="rating-input" id="meaningRating">
-                        <button class="rating-btn" data-value="1">1</button>
-                        <button class="rating-btn" data-value="2">2</button>
-                        <button class="rating-btn" data-value="3">3</button>
-                        <button class="rating-btn" data-value="4">4</button>
-                        <button class="rating-btn" data-value="5">5</button>
-                        <button class="rating-btn" data-value="6">6</button>
-                        <button class="rating-btn" data-value="7">7</button>
-                        <button class="rating-btn" data-value="8">8</button>
-                        <button class="rating-btn" data-value="9">9</button>
-                        <button class="rating-btn" data-value="10">10</button>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="noteInput">备注 (可选)</label>
-                <textarea id="noteInput" rows="2" placeholder="添加一些备注信息..."></textarea>
-            </div>
+        <div class="stat-card">
+            <div class="stat-value" id="avgHappy">0</div>
+            <div class="stat-label">平均快乐值</div>
         </div>
-
-        <div class="history-section">
-            <h3 style="margin-bottom: 20px; color: #333;">📊 历史记录</h3>
-            <div id="historyList"></div>
+        <div class="stat-card">
+            <div class="stat-value" id="avgMeaning">0</div>
+            <div class="stat-label">平均意义值</div>
         </div>
     </div>
 
-    <div id="manualModal" class="hidden" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background:rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000;">
-        <div style="background: white; padding: 30px; border-radius: 15px; max-width: 500px; width: 90%;">
-            <h3 style="margin-bottom: 20px;">手动输入时间</h3>
-            <div class="form-group">
-                <label>开始时间</label>
-                <input type="datetime-local" id="manualStart">
-            </div>
-            <div class="form-group">
-                <label>结束时间</label>
-                <input type="datetime-local" id="manualEnd">
-            </div>
-            <div class="form-group">
-                <label>事项描述</label>
-                <input type="text" id="manualActivity" placeholder="输入事项描述">
-            </div>
-            <div class="form-group">
-                <label>分类标签</label>
-                <select id="manualCategory">
-                    <option value="工作">工作</option>
-                    <option value="学习">学习</option>
-                    <option value="娱乐">娱乐</option>
-                    <option value="情感">情感</option>
-                    <option value="创作">创作</option>
-                    <option value="休息">休息</option>
-                    <option value="其他">其他</option>
-                </select>
-            </div>
-            <div style="display: flex; gap: 10px; justify-content: flex-end;">
-                <button class="btn btn-secondary" onclick="closeManualForm()">取消</button>
-                <button class="btn btn-primary" onclick="saveManualRecord()">保存</button>
-            </div>
+    <div class="timer-section">
+        <div class="timer-display" id="timerDisplay">00:00:00</div>
+        <div class="controls">
+            <button class="btn btn-primary" id="startBtn" onclick="startTimer()">开始计时</button>
+            <button class="btn btn-secondary hidden" id="pauseBtn" onclick="pauseTimer()">暂停</button>
+            <button class="btn btn-danger hidden" id="stopBtn" onclick="stopTimer()">停止</button>
+            <button class="btn btn-success" onclick="showManualForm()">手动输入</button>
+        </div>
+        <div id="currentActivity" class="hidden">
+            <p style="color: #667eea; font-weight: 500;">正在记录: <span id="activityName"></span></p>
         </div>
     </div>
+
+    <div class="form-section">
+        <h3 style="margin-bottom: 20px; color: #333;">快速记录</h3>
+        <div class="form-group">
+            <label for="activityInput">事项描述</label>
+            <input type="text" id="activityInput" placeholder="例如：写代码、看书、运动...">
+        </div>
+        <div class="form-group">
+            <label for="categorySelect">分类标签</label>
+            <select id="categorySelect">
+                <option value="工作">工作</option>
+                <option value="学习">学习</option>
+                <option value="娱乐">娱乐</option>
+                <option value="情感">情感</option>
+                <option value="创作">创作</option>
+                <option value="休息">休息</option>
+                <option value="其他">其他</option>
+            </select>
+        </div>
+        <div class="rating-section">
+            <div class="rating-group">
+                <div class="rating-label">😊 快乐值 (1-10分)</div>
+                <div class="rating-input" id="happyRating">
+                    <button class="rating-btn" data-value="1">1</button>
+                    <button class="rating-btn" data-value="2">2</button>
+                    <button class="rating-btn" data-value="3">3</button>
+                    <button class="rating-btn" data-value="4">4</button>
+                    <button class="rating-btn" data-value="5">5</button>
+                    <button class="rating-btn" data-value="6">6</button>
+                    <button class="rating-btn" data-value="7">7</button>
+                    <button class="rating-btn" data-value="8">8</button>
+                    <button class="rating-btn" data-value="9">9</button>
+                    <button class="rating-btn" data-value="10">10</button>
+                </div>
+            </div>
+            <div class="rating-group">
+                <div class="rating-label">⭐ 意义值 (1-10分)</div>
+                <div class="rating-input" id="meaningRating">
+                    <button class="rating-btn" data-value="1">1</button>
+                    <button class="rating-btn" data-value="2">2</button>
+                    <button class="rating-btn" data-value="3">3</button>
+                    <button class="rating-btn" data-value="4">4</button>
+                    <button class="rating-btn" data-value="5">5</button>
+                    <button class="rating-btn" data-value="6">6</button>
+                    <button class="rating-btn" data-value="7">7</button>
+                    <button class="rating-btn" data-value="8">8</button>
+                    <button class="rating-btn" data-value="9">9</button>
+                    <button class="rating-btn" data-value="10">10</button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="noteInput">备注 (可选)</label>
+            <textarea id="noteInput" rows="2" placeholder="添加一些备注信息..."></textarea>
+        </div>
+    </div>
+
+    <div class="history-section">
+        <h3 style="margin-bottom: 20px; color: #333;">📊 历史记录</h3>
+        <div id="historyList"></div>
+    </div>
+</div>
+
+<div id="manualModal" class="hidden" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background:rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000;">
+    <div style="background: white; padding: 30px; border-radius: 15px; max-width: 500px; width: 90%;box-sizing:border-box;">
+        <h3 style="margin-bottom: 20px;">手动输入时间</h3>
+        <div class="form-group">
+            <label>开始时间</label>
+            <input type="datetime-local" id="manualStart">
+        </div>
+        <div class="form-group">
+            <label>结束时间</label>
+            <input type="datetime-local" id="manualEnd">
+        </div>
+        <div class="form-group">
+            <label>事项描述</label>
+            <input type="text" id="manualActivity" placeholder="输入事项描述">
+        </div>
+        <div class="form-group">
+            <label>分类标签</label>
+            <select id="manualCategory">
+                <option value="工作">工作</option>
+                <option value="学习">学习</option>
+                <option value="娱乐">娱乐</option>
+                <option value="情感">情感</option>
+                <option value="创作">创作</option>
+                <option value="休息">休息</option>
+                <option value="其他">其他</option>
+            </select>
+        </div>
+        <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top:20px;">
+            <button class="btn btn-secondary" onclick="closeManualForm()">取消</button>
+            <button class="btn btn-primary" onclick="saveManualRecord()">保存</button>
+        </div>
+    </div>
+</div>
 
 <script>
 let isRunning = false;
@@ -550,11 +567,15 @@ function updateTimer() {
 }
 
 function showManualForm() {
-    document.getElementById('manualModal').classList.remove('hidden');
+    const modal = document.getElementById('manualModal');
+    modal.style.display = 'flex';
+    modal.classList.remove('hidden');
 }
 
 function closeManualForm() {
-    document.getElementById('manualModal').classList.add('hidden');
+    const modal = document.getElementById('manualModal');
+    modal.style.display = 'none';
+    modal.classList.add('hidden');
 }
 
 function saveManualRecord() {
@@ -600,7 +621,7 @@ function loadRecords() {
 }
 
 function deleteRecord(id) {
-    if (!confirm('确定删除？')) return;
+    if (!confirm('确定删除这条记录吗？')) return;
     records = records.filter(r => r.id !== id);
     localStorage.setItem('timeRecords', JSON.stringify(records));
     updateStats();
